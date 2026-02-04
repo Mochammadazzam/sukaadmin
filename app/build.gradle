@@ -1,46 +1,27 @@
 apply plugin: 'com.android.application'
 
 android {
-    // KUNCI UTAMA: Harus sama dengan 'package' di MainActivity.java
     namespace "com.sukaadmin.app"
     compileSdkVersion 34
 
     defaultConfig {
-        // ID Aplikasi di HP (bisa sama dengan namespace)
         applicationId "com.sukaadmin.app"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            // ANTI-DECOMPILE: Kode Java diacak agar tidak bisa dibongkar
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            // Aktifkan juga di debug agar build sekarang langsung aman (obfuscated)
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
 dependencies {
-    // Library Standar AndroidX
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    
-    // Penting untuk fungsi WebView yang stabil
     implementation 'androidx.webkit:webkit:1.9.0'
 }
