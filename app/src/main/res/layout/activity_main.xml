@@ -3,7 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.whatever.appname.Main"
+    tools:context="com.sukaadmin.app.MainActivity"
     tools:ignore="MergeRootFrame" >
 
     <WebView
@@ -12,4 +12,3 @@
         android:layout_height="match_parent" />
 
 </FrameLayout>
-
