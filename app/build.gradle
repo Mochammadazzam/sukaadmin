@@ -1,28 +1,49 @@
-apply plugin: 'com.android.application' // GANTI: plugin asli Android
+apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 34 // UPDATE: Standar terbaru agar tidak ditolak sistem
-    
+    // Nama package aplikasi Suka Admin kamu
+    namespace "com.sukaadmin.app"
+    compileSdkVersion 34
+
     defaultConfig {
-        applicationId "com.sukaadmin.app" // SESUAIKAN: Nama package kamu
-        minSdkVersion 21 // UPDATE: Agar mendukung fitur modern seperti Firebase
-        targetSdkVersion 34 // UPDATE: Standar terbaru
+        applicationId "com.sukaadmin.app"
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
+
+        // Memaksa penggunaan sistem test AndroidX
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            // FITUR KEAMANAN: Anti-Decompile Aktif
+            // Mengacak nama variabel/class agar tidak bisa dibaca manusia setelah decompile
+            minifyEnabled true
+            // Menghapus resource (gambar/layout) yang tidak terpakai agar APK ringan
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // Aktifkan juga di debug jika ingin hasil rakitan sekarang sudah aman
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    
-    namespace "com.sukaadmin.app" // TAMBAHKAN: Wajib untuk Android versi baru
+
+    // Mengatur kompatibilitas Java agar cocok dengan GitHub Actions (JDK 17)
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
-    // UPDATE: Menggunakan AndroidX (pengganti library lama v7)
+    // Library modern AndroidX
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    
+    // Library tambahan agar WebView lebih stabil di HP Android terbaru
+    implementation 'androidx.webkit:webkit:1.9.0'
 }
