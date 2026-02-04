@@ -1,13 +1,14 @@
-apply plugin: 'com.sukaadmin.app'
+apply plugin: 'com.android.application' // GANTI: plugin asli Android
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '26.0.3'
-
+    compileSdkVersion 34 // UPDATE: Standar terbaru agar tidak ditolak sistem
+    
     defaultConfig {
-        applicationId "com.yoursite.app"
-        minSdkVersion 19
-        targetSdkVersion 28
+        applicationId "com.sukaadmin.app" // SESUAIKAN: Nama package kamu
+        minSdkVersion 21 // UPDATE: Agar mendukung fitur modern seperti Firebase
+        targetSdkVersion 34 // UPDATE: Standar terbaru
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
@@ -16,9 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    
+    namespace "com.sukaadmin.app" // TAMBAHKAN: Wajib untuk Android versi baru
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
+    // UPDATE: Menggunakan AndroidX (pengganti library lama v7)
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
