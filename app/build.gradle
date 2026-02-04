@@ -6,7 +6,7 @@ android {
     compileSdkVersion 34
 
     defaultConfig {
-        applicationId "com.sukalaundry.admin"
+        applicationId "com.sukaadmin.app"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 1
