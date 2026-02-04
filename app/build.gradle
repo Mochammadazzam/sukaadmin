@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    // Namespace menggantikan atribut 'package' yang kita hapus di Manifest
-    namespace "com.sukalaundry.admin"
+    // KUNCI UTAMA: Harus sama dengan 'package' di MainActivity.java
+    namespace "com.sukaadmin.app"
     compileSdkVersion 34
 
     defaultConfig {
+        // ID Aplikasi di HP (bisa sama dengan namespace)
         applicationId "com.sukaadmin.app"
         minSdkVersion 21
         targetSdkVersion 34
@@ -17,13 +18,13 @@ android {
 
     buildTypes {
         release {
-            // FITUR KEAMANAN: Mengaktifkan pengacakan kode (Anti-Decompile)
+            // ANTI-DECOMPILE: Kode Java diacak agar tidak bisa dibongkar
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            // Kita aktifkan minify di debug juga agar hasil build GitHub sekarang langsung aman
+            // Aktifkan juga di debug agar build sekarang langsung aman (obfuscated)
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -36,10 +37,10 @@ android {
 }
 
 dependencies {
-    // Library utama AndroidX
+    // Library Standar AndroidX
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     
-    // Penting untuk kestabilan fitur WebView di Android terbaru
+    // Penting untuk fungsi WebView yang stabil
     implementation 'androidx.webkit:webkit:1.9.0'
 }
